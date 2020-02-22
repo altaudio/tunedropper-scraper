@@ -1,6 +1,1 @@
-console.log('hi');
-
-const helloThere = whynot => {
-  return;
-  whynot;
-};
+console.log('hello');
