@@ -8,6 +8,10 @@
   },
   "type": "module",
   "scripts": {
-    "start": "node ./scraper"
+    "start": "node ./scraper",
+    "dev": "nodemon ./scraper"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
