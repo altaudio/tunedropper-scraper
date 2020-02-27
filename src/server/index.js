@@ -11,7 +11,7 @@ app.get('/authorize', (request, response) => {
     return response.redirect('https://google.com');
   }
 
-  const redirectURI = encodeURIComponent('https://google.com');
+  const redirectURI = encodeURIComponent('https://0a15ac8e.ngrok.io/authorized');
   const scopes = encodeURIComponent(
     'playlist-modify-public playlist-modify-private playlist-read-private'
   );
@@ -27,6 +27,16 @@ app.get('/authorize', (request, response) => {
       redirectURI
   );
 });
+
+app.get('/authorized', (request, response) => {
+  const error = request.query.error;
+  if (error) {
+    console.log(`Authorization failed: ${error}`)
+  }
+
+  const authorizationCode = request.query.code
+  response.sendStatus(200)
+})
 
 const port = 9090;
 console.log(`Listening on port ${port}`);
