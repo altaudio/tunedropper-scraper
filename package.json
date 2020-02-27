@@ -8,8 +8,9 @@
   },
   "type": "module",
   "scripts": {
-    "start": "node ./scraper",
-    "dev": "nodemon ./scraper"
+    "start": "node ./src/server",
+    "dev": "nodemon ./src/server",
+    "tunnel": "~/Downloads/ngrok http 9090 "
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -17,6 +18,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.7",
+    "localtunnel": "^2.0.0",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1"
   },
@@ -31,5 +33,9 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
   }
 }
