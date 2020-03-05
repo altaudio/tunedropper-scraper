@@ -9,8 +9,8 @@
   "type": "module",
   "scripts": {
     "start": "node ./src/server",
-    "dev": "nodemon ./src/server",
-    "tunnel": "~/Downloads/ngrok http 9090 "
+    "dev": "nodemon --inspect ./src/server/index.js",
+    "tunnel": "~/Downloads/ngrok http 8080"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -35,7 +35,9 @@
     ]
   },
   "dependencies": {
+    "btoa": "^1.2.1",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "superagent": "^5.2.2"
   }
 }
