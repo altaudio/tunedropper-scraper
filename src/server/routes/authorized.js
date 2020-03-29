@@ -9,12 +9,14 @@ export const authorized = async (request, response) => {
   }
 
   const authorizationCode = request.query.code;
-  response.sendStatus(200);
 
   try {
     const tokens = await getTokens(authorizationCode);
     setTokens(tokens);
+    response.status(200).send({ message: 'Tunedropper authorized' });
   } catch (error) {
-    console.log(`Error gettings access tokens: ${error}`);
+    const errorMessage = `Error gettings access tokens: ${error}`;
+    console.log(errorMessage);
+    response.status(500).send({ message: errorMessage });
   }
 };
