@@ -1,11 +1,7 @@
 export const authorize = (request, response) => {
   const { SPOTIFY_CLIENT_ID, SECRET_KEY, REDIRECT_URI } = process.env;
 
-  const {
-    query: { secretKey: requestSecretKey }
-  } = request;
-
-  const redirectURI = encodeURIComponent(REDIRECT_URI);
+  const requestSecretKey = request.query.secretKey;
 
   if (requestSecretKey !== SECRET_KEY) {
     console.log('Error: Incorrect secret key');
@@ -24,6 +20,6 @@ export const authorize = (request, response) => {
       '&scope=' +
       scopes +
       '&redirect_uri=' +
-      redirectURI
+      encodeURIComponent(REDIRECT_URI)
   );
 };
