@@ -8,10 +8,6 @@
     "es6": true
   },
   "extends": ["eslint:recommended", "prettier"],
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": "error"
-  },
   "globals": {
     "console": true,
     "process": true
