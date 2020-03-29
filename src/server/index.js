@@ -1,9 +1,6 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import { authorize } from './routes/authorize.js';
 import { authorized } from './routes/authorized.js';
-
-dotenv.config();
 
 const app = express();
 
