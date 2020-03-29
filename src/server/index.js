@@ -3,36 +3,17 @@ import superagent from 'superagent';
 import dotenv from 'dotenv';
 import btoa from 'btoa';
 import { setTokens } from './tokens.js';
+import { authorize } from './routes/authorize.js';
 
 dotenv.config();
 
 const app = express();
 
-const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SECRET_KEY, REDIRECT_URI } = process.env;
+const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, REDIRECT_URI } = process.env;
 
 const redirectURI = encodeURIComponent(`${REDIRECT_URI}/authorized`);
 
-app.get('/authorize', (request, response) => {
-  if (request.query.secretKey !== SECRET_KEY) {
-    console.log('Error: Incorrect secret key');
-    return response.redirect('https://google.com');
-  }
-
-  const scopes = encodeURIComponent(
-    'playlist-modify-public playlist-modify-private playlist-read-private'
-  );
-
-  response.redirect(
-    'https://accounts.spotify.com/authorize' +
-      '?response_type=code' +
-      '&client_id=' +
-      SPOTIFY_CLIENT_ID +
-      '&scope=' +
-      scopes +
-      '&redirect_uri=' +
-      redirectURI
-  );
-});
+app.get('/authorize', authorize);
 
 app.get('/authorized', async (request, response) => {
   const error = request.query.error;
