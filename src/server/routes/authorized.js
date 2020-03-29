@@ -1,5 +1,5 @@
-import { getTokens } from '../spotify/tokens/getTokens.js';
-import { setTokens } from '../tokens.js';
+import { getTokens } from '../spotify/api/getTokens.js';
+import { setTokens } from '../spotify/tokens.js';
 
 export const authorized = async (request, response) => {
   const error = request.query.error;
