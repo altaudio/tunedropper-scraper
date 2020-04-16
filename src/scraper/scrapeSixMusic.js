@@ -15,7 +15,6 @@ export const scrapeSixMusic = async () => {
 
   await page.goto('https://www.bbc.co.uk/sounds/play/live:bbc_6music');
 
-  // Is something funky going on with the wait? Sometimes we get the first artist, and sometimes the second :/
   const artistSelector = '.sc-c-track__artist';
   await page.waitFor(() => document.querySelectorAll('.sc-c-track__artist').length === 4);
 
