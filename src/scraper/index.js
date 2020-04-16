@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer';
+import { scrapeSixMusic } from './scrapeSixMusic.js';
 
 const callEvery = async (callback, interval) => {
   await callback();
@@ -6,11 +6,8 @@ const callEvery = async (callback, interval) => {
 };
 
 const scrape = async () => {
-  const { NODE_ENV } = process.env;
-  const browser = await puppeteer.launch({ headless: NODE_ENV !== 'dev' });
-  const page = await browser.newPage();
-  await page.goto('https://example.com');
-  await browser.close();
+  const { artist, title } = await scrapeSixMusic();
+  console.log(artist, title);
 };
 
 callEvery(scrape, 5000);

@@ -9,7 +9,7 @@
   "type": "module",
   "scripts": {
     "start": "node ./src/index.js",
-    "dev": "NODE_ENV=dev nodemon --inspect ./src/index.js",
+    "dev": "nodemon --inspect ./src/index.js",
     "tunnel": "~/Downloads/ngrok http 8080"
   },
   "devDependencies": {
