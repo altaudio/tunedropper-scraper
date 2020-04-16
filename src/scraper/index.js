@@ -1,4 +1,5 @@
 import { scrapeSixMusic } from './scrapeSixMusic.js';
+import { createPlaylist } from '../spotify/playlists/createPlaylist.js';
 
 const callEvery = async (callback, interval) => {
   await callback();
@@ -7,6 +8,8 @@ const callEvery = async (callback, interval) => {
 
 const scrape = async () => {
   const { artist, title } = await scrapeSixMusic();
+
+  createPlaylist({ name: '6 Music' });
   console.log(artist, title);
 };
 
