@@ -1,9 +1,8 @@
 import fs from 'fs';
-
-const dataFilePath = `${process.cwd()}/src/database/data.json`;
+import { DATA_FILE_PATH } from './config.js';
 
 const writeData = data => {
-  const dataFile = fs.readFileSync(dataFilePath);
+  const dataFile = fs.readFileSync(DATA_FILE_PATH);
   const parsedData = JSON.parse(dataFile);
 
   const newData = {
@@ -11,15 +10,15 @@ const writeData = data => {
     ...data
   };
 
-  fs.writeFileSync(dataFilePath, JSON.stringify(newData));
+  fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(newData));
 };
 
 const createDataFile = () => {
-  if (fs.existsSync(dataFilePath)) {
+  if (fs.existsSync(DATA_FILE_PATH)) {
     return;
   }
 
-  return fs.writeFileSync(dataFilePath, JSON.stringify({}));
+  return fs.writeFileSync(DATA_FILE_PATH, JSON.stringify({}));
 };
 
 export const write = data => {
