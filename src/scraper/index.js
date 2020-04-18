@@ -12,6 +12,7 @@ const PLAYLIST_NAME = '6 Music: Recently Played';
 
 const scrape = async () => {
   const scrapedSong = await scrapeSixMusic();
+  // const scrapedSong = { artist: 'Prince', title: 'Kiss'}
 
   if (!scrapedSong) {
     return;
@@ -25,10 +26,12 @@ const scrape = async () => {
     return;
   }
 
-  const playlist = playlists.body.items.find(({ name }) => name === PLAYLIST_NAME);
+  let playlist = null;
+
+  playlist = playlists.body.items.find(({ name }) => name === PLAYLIST_NAME);
 
   if (!playlist) {
-    await createPlaylist({ name: PLAYLIST_NAME });
+    playlist = await createPlaylist({ name: PLAYLIST_NAME });
   }
 
   const song = await findSong({ artist, title });
