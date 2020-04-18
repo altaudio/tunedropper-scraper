@@ -1,4 +1,4 @@
-import { getTokens } from '../../spotify/api/getTokens.js';
+import { getTokens } from '../../spotify/api/tokens/getTokens.js';
 import { setTokens } from '../../spotify/tokens.js';
 
 export const authorized = async (request, response) => {

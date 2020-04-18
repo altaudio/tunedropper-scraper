@@ -1,5 +1,5 @@
 import request from 'superagent';
-import { getTokens } from '../tokens.js';
+import { getTokens } from '../../tokens.js';
 
 export const createPlaylist = async ({ name }) => {
   const { USER_ID } = process.env;
