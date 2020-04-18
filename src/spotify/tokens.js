@@ -1,13 +1,16 @@
-let tokens = {
-  accessToken: null,
-  refreshToken: null
-};
+import fs from 'fs'
 
 export const setTokens = newTokens => {
-  tokens = {
-    ...tokens,
+  const dataFilePath = `${process.cwd()}/data.json`
+  const dataFile = fs.readFileSync(dataFilePath)
+  const parsedData = JSON.parse(dataFile)
+
+  const dataWithTokens = {
+    ...parsedData,
     ...newTokens
-  };
+  }
+
+  fs.writeFileSync(dataFilePath, JSON.stringify(dataWithTokens))
 };
 
-export const getTokens = () => tokens;
+export const getTokens = () => null;
