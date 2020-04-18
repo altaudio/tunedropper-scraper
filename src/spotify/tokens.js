@@ -1,16 +1,7 @@
-import fs from 'fs'
+import { write } from '../database/write.js';
 
 export const setTokens = newTokens => {
-  const dataFilePath = `${process.cwd()}/data.json`
-  const dataFile = fs.readFileSync(dataFilePath)
-  const parsedData = JSON.parse(dataFile)
-
-  const dataWithTokens = {
-    ...parsedData,
-    ...newTokens
-  }
-
-  fs.writeFileSync(dataFilePath, JSON.stringify(dataWithTokens))
+  write(newTokens);
 };
 
 export const getTokens = () => null;
