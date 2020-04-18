@@ -11,6 +11,8 @@ export const createPlaylist = async ({ name }) => {
       .set('Authorization', `Bearer ${accessToken}`)
       .set('Content-Type', 'application/json')
       .send(`{"name": "${name}"}`);
+
+    console.log(`Created playist: ${name}`);
   } catch (error) {
     console.log(error);
   }
