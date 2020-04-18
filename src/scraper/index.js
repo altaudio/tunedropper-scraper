@@ -7,7 +7,13 @@ const callEvery = async (callback, interval) => {
 };
 
 const scrape = async () => {
-  const { artist, title } = await scrapeSixMusic();
+  const scrapedSong = await scrapeSixMusic();
+
+  if (!scrapedSong) {
+    return;
+  }
+
+  const { artist, title } = scrapedSong;
 
   createPlaylist({ name: '6 Music' });
   console.log(artist, title);

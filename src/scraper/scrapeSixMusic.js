@@ -16,12 +16,21 @@ export const scrapeSixMusic = async () => {
   await page.goto('https://www.bbc.co.uk/sounds/play/live:bbc_6music');
 
   const artistSelector = '.sc-c-track__artist';
-  await page.waitFor(() => document.querySelectorAll('.sc-c-track__artist').length === 4);
 
-  const artist = await getTextByClassName(page, artistSelector);
-  const title = await getTextByClassName(page, '.sc-c-track__title');
+  try {
+    await page.waitFor(() => document.querySelectorAll('.sc-c-track__artist').length === 4);
 
-  await browser.close();
+    const artist = await getTextByClassName(page, artistSelector);
+    const title = await getTextByClassName(page, '.sc-c-track__title');
 
-  return { artist, title };
+    await browser.close();
+
+    return { artist, title };
+  } catch (error) {
+    console.log(`Error scraping song: ${error}`);
+
+    await browser.close();
+
+    return null;
+  }
 };
