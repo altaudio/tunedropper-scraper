@@ -9,6 +9,8 @@
   },
   "extends": ["eslint:recommended", "prettier"],
   "globals": {
+    "setTimeout": true,
+    "document": true,
     "console": true,
     "process": true
   }
