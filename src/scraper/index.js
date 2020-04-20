@@ -3,17 +3,14 @@ import { createPlaylist } from '../spotify/api/playlists/createPlaylist.js';
 import { getPlaylists } from '../spotify/api/playlists/getPlaylists.js';
 import { findSong } from '../spotify/api/songs/findSong.js';
 import { addSongToPlaylist } from '../spotify/api/playlists/addSongToPlaylist.js';
-
-const callEvery = async (callback, interval) => {
-  await callback();
-  setTimeout(() => callEvery(callback, interval), interval);
-};
+import { callEvery } from '../common/callEvery.js';
 
 const PLAYLIST_NAME = '6 Music: Recently Played';
 
+const TWO_MINUTES_IN_MS = 120000;
+
 const scrape = async () => {
   const scrapedSong = await scrapeSixMusic();
-  // const scrapedSong = { artist: 'Prince', title: 'Kiss'}
 
   if (!scrapedSong) {
     return;
@@ -44,4 +41,4 @@ const scrape = async () => {
   await addSongToPlaylist({ playlistId: playlist.id, songURI: song.uri });
 };
 
-callEvery(scrape, 5000);
+callEvery(scrape, TWO_MINUTES_IN_MS);
