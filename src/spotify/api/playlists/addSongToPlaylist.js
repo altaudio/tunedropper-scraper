@@ -9,7 +9,7 @@ export const addSongToPlaylist = async ({ songURI, playlistId }) => {
       .post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`)
       .set('Authorization', `Bearer ${accessToken}`)
       .set('Content-Type', 'application/json')
-      .send(`{"uris": ["${songURI}"]}`);
+      .send(`{"uris": ["${songURI}"], "position": 0}`);
 
     console.log(`Added song to playlist: ${songURI}`);
 

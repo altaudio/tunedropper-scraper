@@ -13,15 +13,6 @@ const writeData = data => {
   fs.writeFileSync(DATA_FILE_PATH, JSON.stringify(newData));
 };
 
-const createDataFile = () => {
-  if (fs.existsSync(DATA_FILE_PATH)) {
-    return;
-  }
-
-  return fs.writeFileSync(DATA_FILE_PATH, JSON.stringify({}));
-};
-
 export const write = data => {
-  createDataFile();
   writeData(data);
 };
