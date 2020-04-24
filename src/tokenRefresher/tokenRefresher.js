@@ -1,19 +1,19 @@
 import { callEvery } from '../common/callEvery.js';
-import { refreshTokens } from '../spotify/api/tokens/refreshTokens.js';
-import { setTokens } from '../spotify/tokens.js';
+import { refreshAccessToken } from '../spotify/api/tokens/refreshAccessToken.js';
+import { write } from '../database/write.js';
 
-const THIRTY_MINUTES_IN_MS = 1800000;
+const REFRESH_INTERVAL = 1800000;
 
 callEvery(
   async () => {
-    const tokens = await refreshTokens();
+    const accessToken = await refreshAccessToken();
 
-    if (!tokens) {
+    if (!accessToken) {
       return;
     }
 
-    setTokens(tokens);
+    write({ accessToken });
   },
-  THIRTY_MINUTES_IN_MS,
+  REFRESH_INTERVAL,
   { initialCall: false }
 );

@@ -2,7 +2,7 @@ import superagent from 'superagent';
 import btoa from 'btoa';
 import { read } from '../../../database/read.js';
 
-export const refreshTokens = async () => {
+export const refreshAccessToken = async () => {
   const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } = process.env;
   const { refreshToken: oldRefreshToken } = read(['refreshToken']);
 
@@ -14,7 +14,7 @@ export const refreshTokens = async () => {
       .send(`refresh_token=${oldRefreshToken}`);
 
     console.log('Refreshed access: tokens');
-    return { accessToken: body.access_token, refreshToken: body.refreshToken };
+    return body.accessToken;
   } catch (error) {
     console.log(`Error refreshing tokens: ${error}`);
     return null;
