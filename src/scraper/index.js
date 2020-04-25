@@ -54,6 +54,7 @@ const scrape = async () => {
     return null;
   }
 
+  console.log(`Adding song to playlist: ${song.name}`);
   await addSongToPlaylist({ playlistId: playlist.id, songURI: song.uri });
 };
 
