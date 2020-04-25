@@ -7,14 +7,16 @@ export const refreshAccessToken = async () => {
   const { refreshToken: oldRefreshToken } = read(['refreshToken']);
 
   try {
-    const { body } = await superagent
+    const {
+      body: { access_token: accessToken }
+    } = await superagent
       .post('https://accounts.spotify.com/api/token')
       .set('Authorization', `Basic ${btoa(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`)}`)
       .send('grant_type=refresh_token')
       .send(`refresh_token=${oldRefreshToken}`);
 
     console.log('Refreshed access: tokens');
-    return body.accessToken;
+    return accessToken;
   } catch (error) {
     console.log(`Error refreshing tokens: ${error}`);
     return null;
