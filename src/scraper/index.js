@@ -8,7 +8,7 @@ import { callEvery } from '../common/callEvery.js';
 
 const PLAYLIST_NAME = '6 Music: Recently Played';
 
-const TWO_MINUTES_IN_MS = 120000;
+const SCRAPE_INTERVAL = 30000;
 
 const scrape = async () => {
   const scrapedSong = await scrapeSixMusic();
@@ -57,4 +57,4 @@ const scrape = async () => {
   await addSongToPlaylist({ playlistId: playlist.id, songURI: song.uri });
 };
 
-callEvery(scrape, TWO_MINUTES_IN_MS);
+callEvery(scrape, SCRAPE_INTERVAL);
