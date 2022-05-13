@@ -1,3 +1,5 @@
 src/database/data.json
 node_modules
 .env
+
+.idea/
